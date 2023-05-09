@@ -8,3 +8,4 @@ git remote add origin"url" //sube repositorio completo
 git push -u origin main //sube una actualizacion
 
 cambio de prueba.
+cambiar main por SafeTravelMap *nota
