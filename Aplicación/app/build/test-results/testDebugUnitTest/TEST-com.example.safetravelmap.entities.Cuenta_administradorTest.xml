@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.safetravelmap.entities.Cuenta_administradorTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-05-30T20:54:44" hostname="LAPTOP-JBS5NL7O" time="0.005">
+<testsuite name="com.example.safetravelmap.entities.Cuenta_administradorTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-06-19T16:37:02" hostname="LAPTOP-JBS5NL7O" time="0.024">
   <properties/>
-  <testcase name="testConsultar_administrador" classname="com.example.safetravelmap.entities.Cuenta_administradorTest" time="0.005">
+  <testcase name="testConsultar_administrador" classname="com.example.safetravelmap.entities.Cuenta_administradorTest" time="0.024">
     <failure message="junit.framework.AssertionFailedError: expected:&lt;true&gt; but was:&lt;false&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;true&gt; but was:&lt;false&gt;
 	at junit.framework.Assert.fail(Assert.java:57)
 	at junit.framework.Assert.failNotEquals(Assert.java:329)

@@ -9,13 +9,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="319fab11-e3ba-4969-a38e-000a4055361f" name="Changes" comment="" />
+    <list default="true" id="319fab11-e3ba-4969-a38e-000a4055361f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\corpo\.android\avd\Pixel_3a_API_31.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R28M5283L8M]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -34,13 +36,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit3 Test Class" />
+        <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -60,8 +63,7 @@
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/corpo/OneDrive/Escritorio/SafeTravelMap.app.main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/frank/safetravelmap/SafeTravelMap&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -232,13 +234,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Android App.app" />
-      <item itemvalue="Gradle.Cuenta_usuarioTest.testConsultar_usuario" />
-      <item itemvalue="Gradle.Cuenta_administradorTest" />
-      <item itemvalue="Gradle.Cuenta_administradorTest.testConsultar_administrador" />
-      <item itemvalue="Gradle.Cuenta_administradorTest.testConsultar_usuario" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Cuenta_administradorTest.testConsultar_administrador" />
@@ -257,17 +252,6 @@
       <updated>1684776114836</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SafeTravelMap$Cuenta_administradorTest_testConsultar_administrador.ic" NAME="Cuenta_administradorTest.testConsultar_administrador Coverage Results" MODIFIED="1685480025051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

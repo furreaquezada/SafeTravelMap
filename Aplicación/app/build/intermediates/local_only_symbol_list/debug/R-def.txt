@@ -9,11 +9,14 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+id cargarImagen
 id correo
+id desc
 id login
 id mensaje
 id menu
 id pass
+id switch1
 id textView
 layout activity_login
 layout activity_main
@@ -31,3 +34,4 @@ string project_id
 style Theme.SafeTravelMap
 xml backup_rules
 xml data_extraction_rules
+xml file_paths
