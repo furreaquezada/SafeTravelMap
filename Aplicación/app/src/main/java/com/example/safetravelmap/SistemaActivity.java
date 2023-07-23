@@ -50,6 +50,7 @@ import static android.content.ContentValues.TAG;
 public class SistemaActivity extends AppCompatActivity {
 
     public Button cargarImagen;
+    public Button btnMapa;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_PERMISSIONS = 1;
     String currentPhotoPath, imageFileName;
@@ -63,7 +64,13 @@ public class SistemaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sistema);
+
+
+
+
+
         cargarImagen = (Button) findViewById(R.id.cargarImagen);
+        btnMapa = (Button) findViewById(R.id.btnMapa);
         textView = (TextView) findViewById(R.id.textView);
         desc = (EditText) findViewById(R.id.desc);
         switch1 = findViewById(R.id.switch1);
@@ -79,6 +86,14 @@ public class SistemaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Solicita los permisos
                 requestPermissions();
+            }
+        });
+
+        btnMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                startActivity(intent);
             }
         });
     }

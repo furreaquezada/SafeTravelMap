@@ -17,6 +17,9 @@
         android:theme="@style/Theme.SafeTravelMap"
         tools:targetApi="31">
         <activity
+            android:name=".MapActivity"
+            android:exported="false" />
+        <activity
             android:name=".SistemaActivity"
             android:exported="false" />
         <activity
@@ -39,8 +42,12 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBjynErAHv4RNpcKaa9c6cin4kfYf9G8Wg" />
     </application>
 
 </manifest>
