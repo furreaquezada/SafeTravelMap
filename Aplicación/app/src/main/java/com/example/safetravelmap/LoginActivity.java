@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
     public void consultar_administrador(){
         Toast.makeText(getApplicationContext(), "Consultando administrador en base de datos...", Toast.LENGTH_SHORT).show();
         mFirestore = FirebaseFirestore.getInstance();
-        mFirestore.collection("administrador").whereEqualTo("correo", correo.getText().toString().trim()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        mFirestore.collection("administradores").whereEqualTo("correo", correo.getText().toString().trim()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(queryDocumentSnapshots.isEmpty()){

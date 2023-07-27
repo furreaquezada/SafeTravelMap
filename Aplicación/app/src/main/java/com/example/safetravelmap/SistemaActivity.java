@@ -13,8 +13,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,8 @@ import com.example.safetravelmap.entities.Estaticos;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
@@ -37,6 +41,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,15 +64,16 @@ public class SistemaActivity extends AppCompatActivity {
     EditText desc;
     Switch switch1;
 
+    Spinner categorias;
+
+    boolean cargando = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sistema);
 
-
-
-
+        cargarCombo();
 
         cargarImagen = (Button) findViewById(R.id.cargarImagen);
         btnMapa = (Button) findViewById(R.id.btnMapa);
@@ -185,13 +191,17 @@ public class SistemaActivity extends AppCompatActivity {
 
 
     private void subirImagen(){
+
+        habilitar(false);
+
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference imagenRef = storageRef.child(imageFileName + ".jpg");
 
         Uri file = Uri.fromFile(new File(currentPhotoPath));
 
-        Toast.makeText(SistemaActivity.this, "Directorio: " + file, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SistemaActivity.this, "Cargando, espere...", Toast.LENGTH_SHORT).show();
         UploadTask uploadTask = imagenRef.putFile(file);
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -205,7 +215,7 @@ public class SistemaActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(SistemaActivity.this, "Bien", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SistemaActivity.this, "Desperfecto cargado con éxito!!!", Toast.LENGTH_SHORT).show();
                 almacenar();
             }
         });
@@ -232,6 +242,9 @@ public class SistemaActivity extends AppCompatActivity {
         }
         desperfecto.put("tipo_usuario", Estaticos.tipo_usuario); // Aquí pon el tipo de usuario
 
+        String selectedValue = categorias.getSelectedItem().toString();
+        desperfecto.put("desperfecto", selectedValue);
+
         // Agregar un nuevo documento a la colección "desperfectos"
         mFirestore.collection("desperfectos")
                 .add(desperfecto)
@@ -241,6 +254,7 @@ public class SistemaActivity extends AppCompatActivity {
                         // Documento añadido con éxito
                         Log.d(TAG, "Documento añadido con ID: " + documentReference.getId());
                         Toast.makeText(SistemaActivity.this, "Documento añadido con ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
+                        habilitar(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -250,5 +264,52 @@ public class SistemaActivity extends AppCompatActivity {
                         Log.w(TAG, "Error añadiendo documento", e);
                     }
                 });
+    }
+
+    public void habilitar(boolean estado){
+        cargarImagen.setEnabled(estado);
+        btnMapa.setEnabled(estado);
+        textView.setEnabled(estado);
+        desc.setEnabled(estado);
+        switch1.setEnabled(estado);
+        categorias.setEnabled(estado);
+    }
+
+    public void cargarCombo(){
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        mFirestore.collection("categorias").orderBy("creacion").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(queryDocumentSnapshots.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No existen categorías en base de datos.", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    ArrayList<String> list = new ArrayList<String>();
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        list.add(document.getString("nombre"));
+                    }
+                    completarCombo(list);
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@androidx.annotation.NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "ERROR: " + e.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void completarCombo(ArrayList<String> list){
+        categorias = (Spinner) findViewById(R.id.categorias);
+        // Crear un ArrayAdapter usando el array y un layout predeterminado de Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+
+        // Especificar el layout a usar cuando se muestra la lista de opciones
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Aplicar el adapter al spinner
+        categorias.setAdapter(adapter);
     }
 }
