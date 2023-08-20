@@ -7,6 +7,8 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -56,6 +58,8 @@ public class SistemaActivity extends AppCompatActivity {
 
     public Button cargarImagen;
     public Button btnMapa;
+
+    public Button btnMapa2;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_PERMISSIONS = 1;
     String currentPhotoPath, imageFileName;
@@ -67,6 +71,14 @@ public class SistemaActivity extends AppCompatActivity {
     Spinner categorias;
 
     boolean cargando = false;
+    private static final int REQUEST_LOCATION_PERMISSION_CODE = 2;
+
+
+
+    // Coordenadas
+    LocationManager locationManager;
+    String locationProvider = LocationManager.GPS_PROVIDER;
+    double latitud, longitud; // Añadir para almacenar las coordenadas
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +89,7 @@ public class SistemaActivity extends AppCompatActivity {
 
         cargarImagen = (Button) findViewById(R.id.cargarImagen);
         btnMapa = (Button) findViewById(R.id.btnMapa);
+        btnMapa2 = (Button) findViewById(R.id.btnMapa2);
         textView = (TextView) findViewById(R.id.textView);
         desc = (EditText) findViewById(R.id.desc);
         switch1 = findViewById(R.id.switch1);
@@ -99,9 +112,26 @@ public class SistemaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                intent.putExtra("graves", false);
                 startActivity(intent);
             }
         });
+
+        btnMapa2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                intent.putExtra("graves", true);
+                startActivity(intent);
+            }
+        });
+
+        locationManager = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+
+        requestLocationPermissions();
+
+
+
     }
 
     private void requestPermissions() {
@@ -127,21 +157,34 @@ public class SistemaActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSIONS) {
-            if (grantResults.length > 1 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                // Los permisos fueron concedidos
-                tomarFoto();
-            } else {
-                // Los permisos fueron denegados
-                Toast.makeText(this, "Permiso de cámara y almacenamiento requerido", Toast.LENGTH_SHORT).show();
-            }
+
+        switch (requestCode) {
+            case REQUEST_PERMISSIONS:
+                if (grantResults.length > 1 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                        grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    // Los permisos fueron concedidos
+                    tomarFoto();
+                } else {
+                    // Los permisos fueron denegados
+                    Toast.makeText(this, "Permiso de cámara y almacenamiento requerido", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case REQUEST_LOCATION_PERMISSION_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    fetchLocation();
+                } else {
+                    Toast.makeText(this, "Se necesita el permiso para acceder a la ubicación", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
+
 
     private void tomarFoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -244,6 +287,10 @@ public class SistemaActivity extends AppCompatActivity {
 
         String selectedValue = categorias.getSelectedItem().toString();
         desperfecto.put("desperfecto", selectedValue);
+        desperfecto.put("latitud", latitud);
+        desperfecto.put("longitud", longitud);
+
+
 
         // Agregar un nuevo documento a la colección "desperfectos"
         mFirestore.collection("desperfectos")
@@ -269,6 +316,7 @@ public class SistemaActivity extends AppCompatActivity {
     public void habilitar(boolean estado){
         cargarImagen.setEnabled(estado);
         btnMapa.setEnabled(estado);
+        btnMapa2.setEnabled(estado);
         textView.setEnabled(estado);
         desc.setEnabled(estado);
         switch1.setEnabled(estado);
@@ -312,4 +360,40 @@ public class SistemaActivity extends AppCompatActivity {
         // Aplicar el adapter al spinner
         categorias.setAdapter(adapter);
     }
+
+
+    // Ubicación
+    private void requestLocationPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION_PERMISSION_CODE);
+        } else {
+            fetchLocation();
+        }
+    }
+
+    private void fetchLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        Location location = locationManager.getLastKnownLocation(locationProvider);
+
+        if (location != null) {
+            latitud = location.getLatitude();
+            longitud = location.getLongitude();
+            Toast.makeText(SistemaActivity.this, "La lat: " + latitud, Toast.LENGTH_SHORT).show();
+            Toast.makeText(SistemaActivity.this, "La lon: " + longitud, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "No se pudo obtener la ubicación", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
 }

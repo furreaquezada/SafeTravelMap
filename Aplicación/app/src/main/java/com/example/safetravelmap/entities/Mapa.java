@@ -24,4 +24,8 @@ public class Mapa {
             return true;
         else return false;
     }
+
+    public boolean cargarMarcadores() {
+        return true;
+    }
 }
