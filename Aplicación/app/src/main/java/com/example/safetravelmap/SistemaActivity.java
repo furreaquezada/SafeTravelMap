@@ -7,22 +7,29 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.safetravelmap.entities.Desperfecto;
 import com.example.safetravelmap.entities.Estaticos;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
@@ -37,6 +44,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +58,11 @@ import static android.content.ContentValues.TAG;
 public class SistemaActivity extends AppCompatActivity {
 
     public Button cargarImagen;
+    public Button btnMapa;
+
+    public Button btnMapa2;
+
+    public Button btnTuto;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_PERMISSIONS = 1;
     String currentPhotoPath, imageFileName;
@@ -58,12 +71,38 @@ public class SistemaActivity extends AppCompatActivity {
     EditText desc;
     Switch switch1;
 
+    Spinner categorias;
+
+    boolean cargando = false;
+    private static final int REQUEST_LOCATION_PERMISSION_CODE = 2;
+
+    ArrayList<Desperfecto> desperfectos = new ArrayList<Desperfecto>();
+
+    boolean hayDesperfecto =false;
+
+
+
+
+    // Coordenadas
+    LocationManager locationManager;
+    String locationProvider = LocationManager.GPS_PROVIDER;
+    double latitud, longitud; // Añadir para almacenar las coordenadas
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sistema);
+
+
+        cargarCombo();
+
+
         cargarImagen = (Button) findViewById(R.id.cargarImagen);
+        btnMapa = (Button) findViewById(R.id.btnMapa);
+        btnMapa2 = (Button) findViewById(R.id.btnMapa2);
+        btnTuto = (Button) findViewById(R.id.btnTuto);
         textView = (TextView) findViewById(R.id.textView);
         desc = (EditText) findViewById(R.id.desc);
         switch1 = findViewById(R.id.switch1);
@@ -81,7 +120,68 @@ public class SistemaActivity extends AppCompatActivity {
                 requestPermissions();
             }
         });
+
+        btnMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                intent.putExtra("graves", false);
+                startActivity(intent);
+            }
+        });
+
+        btnMapa2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                intent.putExtra("graves", true);
+                startActivity(intent);
+            }
+        });
+
+        btnTuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), NuevoTutorialActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        locationManager = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+        requestLocationPermissions();
+
     }
+
+
+    private boolean isWithinRadius(double currentLat, double currentLon, double targetLat, double targetLon, float radius) {
+        Location currentLocation = new Location("currentLocation");
+        currentLocation.setLatitude(currentLat);
+        currentLocation.setLongitude(currentLon);
+
+        Location targetLocation = new Location("targetLocation");
+        targetLocation.setLatitude(targetLat);
+        targetLocation.setLongitude(targetLon);
+
+        float distanceInMeters = currentLocation.distanceTo(targetLocation);
+        return distanceInMeters <= radius;
+    }
+
+    private void checkCoordinates() {
+        for (int i=0; i< desperfectos.size(); i++) {
+            if (isWithinRadius(latitud, longitud, desperfectos.get(i).getLatitud(), desperfectos.get(i).getLongitud(), 50)) {
+                hayDesperfecto = true;
+            }
+        }
+
+        if(hayDesperfecto){
+            Toast.makeText(this, "Ya existen desperfectos, dentro de un radio de 50m!!! No puede agregar otro desde esta ubiación.", Toast.LENGTH_SHORT).show();
+            habilitarYaHayDesperfecto();
+        }else{
+            Toast.makeText(this, "NO existen desperfectos, dentro de un radio de 50m!!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     private void requestPermissions() {
         String[] permissions = {
@@ -106,21 +206,34 @@ public class SistemaActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSIONS) {
-            if (grantResults.length > 1 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                // Los permisos fueron concedidos
-                tomarFoto();
-            } else {
-                // Los permisos fueron denegados
-                Toast.makeText(this, "Permiso de cámara y almacenamiento requerido", Toast.LENGTH_SHORT).show();
-            }
+
+        switch (requestCode) {
+            case REQUEST_PERMISSIONS:
+                if (grantResults.length > 1 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                        grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    // Los permisos fueron concedidos
+                    tomarFoto();
+                } else {
+                    // Los permisos fueron denegados
+                    Toast.makeText(this, "Permiso de cámara y almacenamiento requerido", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case REQUEST_LOCATION_PERMISSION_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    fetchLocation();
+                } else {
+                    Toast.makeText(this, "Se necesita el permiso para acceder a la ubicación", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
+
 
     private void tomarFoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -170,13 +283,17 @@ public class SistemaActivity extends AppCompatActivity {
 
 
     private void subirImagen(){
+
+        habilitar(false);
+
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference imagenRef = storageRef.child(imageFileName + ".jpg");
 
         Uri file = Uri.fromFile(new File(currentPhotoPath));
 
-        Toast.makeText(SistemaActivity.this, "Directorio: " + file, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SistemaActivity.this, "Cargando, espere...", Toast.LENGTH_SHORT).show();
         UploadTask uploadTask = imagenRef.putFile(file);
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -190,7 +307,7 @@ public class SistemaActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(SistemaActivity.this, "Bien", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SistemaActivity.this, "Desperfecto cargado con éxito!!!", Toast.LENGTH_SHORT).show();
                 almacenar();
             }
         });
@@ -217,6 +334,14 @@ public class SistemaActivity extends AppCompatActivity {
         }
         desperfecto.put("tipo_usuario", Estaticos.tipo_usuario); // Aquí pon el tipo de usuario
 
+        String selectedValue = categorias.getSelectedItem().toString();
+        desperfecto.put("desperfecto", selectedValue);
+        desperfecto.put("latitud", latitud);
+        desperfecto.put("longitud", longitud);
+        desperfecto.put("puntos", 100);
+
+
+
         // Agregar un nuevo documento a la colección "desperfectos"
         mFirestore.collection("desperfectos")
                 .add(desperfecto)
@@ -226,6 +351,7 @@ public class SistemaActivity extends AppCompatActivity {
                         // Documento añadido con éxito
                         Log.d(TAG, "Documento añadido con ID: " + documentReference.getId());
                         Toast.makeText(SistemaActivity.this, "Documento añadido con ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
+                        habilitar(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -236,4 +362,139 @@ public class SistemaActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void habilitar(boolean estado){
+        cargarImagen.setEnabled(estado);
+        btnMapa.setEnabled(estado);
+        btnMapa2.setEnabled(estado);
+        textView.setEnabled(estado);
+        desc.setEnabled(estado);
+        switch1.setEnabled(estado);
+        categorias.setEnabled(estado);
+    }
+
+    public void habilitarYaHayDesperfecto(){
+        cargarImagen.setEnabled(false);
+        btnMapa.setEnabled(true);
+        btnMapa2.setEnabled(true);
+        textView.setEnabled(false);
+        desc.setEnabled(false);
+        switch1.setEnabled(false);
+        categorias.setEnabled(false);
+    }
+
+    public void cargarCombo(){
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        mFirestore.collection("categorias").orderBy("creacion").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(queryDocumentSnapshots.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No existen categorías en base de datos.", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    ArrayList<String> list = new ArrayList<String>();
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        list.add(document.getString("nombre"));
+                    }
+                    completarCombo(list);
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@androidx.annotation.NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "ERROR: " + e.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void cargarDesperfectos(){
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        mFirestore.collection("desperfectos").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(queryDocumentSnapshots.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No existen desperfectos en base de datos.", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        desperfectos.add(new Desperfecto(
+                                document.getLong("cod_usuario").intValue(),
+                                document.getString("desc"),
+                                document.getString("desperfecto"),
+                                document.getString("imagen"),
+                                document.getDouble("latitud"),
+                                document.getDouble("longitud"),
+                                document.getLong("riesgo").intValue(),
+                                document.getBoolean("tipo_usuario"),
+                                document.getLong("puntos").intValue()
+
+                        ));
+                    }
+                }
+
+                checkCoordinates();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@androidx.annotation.NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "ERROR: " + e.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+
+    public void completarCombo(ArrayList<String> list){
+        categorias = (Spinner) findViewById(R.id.categorias);
+        // Crear un ArrayAdapter usando el array y un layout predeterminado de Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+
+        // Especificar el layout a usar cuando se muestra la lista de opciones
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Aplicar el adapter al spinner
+        categorias.setAdapter(adapter);
+    }
+
+
+    // Ubicación
+    private void requestLocationPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION_PERMISSION_CODE);
+        } else {
+            fetchLocation();
+        }
+    }
+
+    private void fetchLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        Location location = locationManager.getLastKnownLocation(locationProvider);
+
+        if (location != null) {
+            latitud = location.getLatitude();
+            longitud = location.getLongitude();
+            Toast.makeText(SistemaActivity.this, "La lat: " + latitud, Toast.LENGTH_SHORT).show();
+            Toast.makeText(SistemaActivity.this, "La lon: " + longitud, Toast.LENGTH_SHORT).show();
+            cargarDesperfectos();
+
+        } else {
+            Toast.makeText(this, "No se pudo obtener la ubicación", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
 }

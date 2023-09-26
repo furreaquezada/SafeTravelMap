@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "616178577007",
-    "project_id": "safetravelmap-6df11",
-    "storage_bucket": "safetravelmap-6df11.appspot.com"
+    "project_number": "221338951155",
+    "project_id": "safetravelmap-89deb",
+    "storage_bucket": "safetravelmap-89deb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:616178577007:android:5ad40dd6e29ff088e8e79a",
+        "mobilesdk_app_id": "1:221338951155:android:6b3f5a4f64711fd126c686",
         "android_client_info": {
           "package_name": "com.example.safetravelmap"
         }
       },
       "oauth_client": [
         {
-          "client_id": "616178577007-o6bhjgervjelb2pd1fepsi1ucb3aiphe.apps.googleusercontent.com",
+          "client_id": "221338951155-3t1repvupqkg1tuuabgg6abhig8mjhis.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAUgo2UqLZHBbyGDM3XVa4C5_ShKbsOe1g"
+          "current_key": "AIzaSyCfbu04MQ4Vq-BBqHCWZ-FTdLL__JvTLIU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "616178577007-o6bhjgervjelb2pd1fepsi1ucb3aiphe.apps.googleusercontent.com",
+              "client_id": "221338951155-3t1repvupqkg1tuuabgg6abhig8mjhis.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

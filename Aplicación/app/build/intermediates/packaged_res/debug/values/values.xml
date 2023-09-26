@@ -8,13 +8,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">SafeTravelMap</string>
-    <string name="default_web_client_id" translatable="false">616178577007-o6bhjgervjelb2pd1fepsi1ucb3aiphe.apps.googleusercontent.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">616178577007</string>
-    <string name="google_api_key" translatable="false">AIzaSyAUgo2UqLZHBbyGDM3XVa4C5_ShKbsOe1g</string>
-    <string name="google_app_id" translatable="false">1:616178577007:android:5ad40dd6e29ff088e8e79a</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAUgo2UqLZHBbyGDM3XVa4C5_ShKbsOe1g</string>
-    <string name="google_storage_bucket" translatable="false">safetravelmap-6df11.appspot.com</string>
-    <string name="project_id" translatable="false">safetravelmap-6df11</string>
+    <string name="default_web_client_id" translatable="false">221338951155-3t1repvupqkg1tuuabgg6abhig8mjhis.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">221338951155</string>
+    <string name="google_api_key" translatable="false">AIzaSyCfbu04MQ4Vq-BBqHCWZ-FTdLL__JvTLIU</string>
+    <string name="google_app_id" translatable="false">1:221338951155:android:6b3f5a4f64711fd126c686</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCfbu04MQ4Vq-BBqHCWZ-FTdLL__JvTLIU</string>
+    <string name="google_storage_bucket" translatable="false">safetravelmap-89deb.appspot.com</string>
+    <string name="project_id" translatable="false">safetravelmap-89deb</string>
     <style name="Theme.SafeTravelMap" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         
         <item name="colorPrimary">@color/purple_500</item>
