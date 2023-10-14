@@ -41,6 +41,7 @@ id menu
 id pass
 id switch1
 id textView
+id textView2
 id textViewInfo
 id titulo
 id tituloEdit

@@ -1,10 +1,10 @@
-#Thu Sep 21 21:05:59 CLST 2023
-base.0=C\:\\Users\\corpo\\OneDrive\\Escritorio\\proyecto H4\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\corpo\\OneDrive\\Escritorio\\proyecto H4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\corpo\\OneDrive\\Escritorio\\proyecto H4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
-base.3=C\:\\Users\\corpo\\OneDrive\\Escritorio\\proyecto H4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
-base.4=C\:\\Users\\corpo\\OneDrive\\Escritorio\\proyecto H4\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.5=C\:\\Users\\corpo\\OneDrive\\Escritorio\\proyecto H4\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+#Wed Oct 11 20:46:40 CLST 2023
+base.0=C\:\\Users\\corpo\\OneDrive\\Escritorio\\prueba\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\corpo\\OneDrive\\Escritorio\\prueba\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\corpo\\OneDrive\\Escritorio\\prueba\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.3=C\:\\Users\\corpo\\OneDrive\\Escritorio\\prueba\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.4=C\:\\Users\\corpo\\OneDrive\\Escritorio\\prueba\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.5=C\:\\Users\\corpo\\OneDrive\\Escritorio\\prueba\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=10/classes.dex

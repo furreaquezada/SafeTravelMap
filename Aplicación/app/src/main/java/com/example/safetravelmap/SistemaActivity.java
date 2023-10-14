@@ -168,16 +168,16 @@ public class SistemaActivity extends AppCompatActivity {
 
     private void checkCoordinates() {
         for (int i=0; i< desperfectos.size(); i++) {
-            if (isWithinRadius(latitud, longitud, desperfectos.get(i).getLatitud(), desperfectos.get(i).getLongitud(), 50)) {
+            if (isWithinRadius(latitud, longitud, desperfectos.get(i).getLatitud(), desperfectos.get(i).getLongitud(), 25)) {
                 hayDesperfecto = true;
             }
         }
 
         if(hayDesperfecto){
-            Toast.makeText(this, "Ya existen desperfectos, dentro de un radio de 50m!!! No puede agregar otro desde esta ubiación.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ya existen desperfectos, dentro de un radio de 25m!!! No puede agregar otro desde esta ubiación.", Toast.LENGTH_SHORT).show();
             habilitarYaHayDesperfecto();
         }else{
-            Toast.makeText(this, "NO existen desperfectos, dentro de un radio de 50m!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "NO existen desperfectos, dentro de un radio de 25m!!!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -429,7 +429,6 @@ public class SistemaActivity extends AppCompatActivity {
                                 document.getLong("riesgo").intValue(),
                                 document.getBoolean("tipo_usuario"),
                                 document.getLong("puntos").intValue()
-
                         ));
                     }
                 }
