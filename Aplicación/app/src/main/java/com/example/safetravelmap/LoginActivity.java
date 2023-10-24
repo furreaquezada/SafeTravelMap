@@ -33,6 +33,7 @@ import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity {
     public TextView mensaje;
+
     public EditText correo;
     public EditText pass;
     public Button login;
@@ -120,9 +121,10 @@ public class LoginActivity extends AppCompatActivity {
                         Estaticos.cuenta_usuario.setNombre_usuario(document.getString("nombre_usuario"));
                         Estaticos.cuenta_usuario.setPass(document.getString("pass"));
                         Estaticos.cuenta_usuario.setRut(document.getString("rut"));
+                        Estaticos.cuenta_usuario.setPuntaje(document.getLong("puntaje").intValue());
                     }
                     cargarDesperfectos();
-                    //Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -155,6 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                         Estaticos.cuenta_administrador.setNombre_usuario(document.getString("nombre_usuario"));
                         Estaticos.cuenta_administrador.setPass(document.getString("pass"));
                         Estaticos.cuenta_administrador.setRut(document.getString("rut"));
+                        Estaticos.cuenta_administrador.setPuntaje(document.getLong("puntaje").intValue());
                     }
                     cargarDesperfectos();
                     //Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
@@ -197,13 +200,14 @@ public class LoginActivity extends AppCompatActivity {
                                         document.getDouble("longitud"),
                                         document.getLong("riesgo").intValue(),
                                         document.getBoolean("tipo_usuario"),
-                                        document.getLong("puntos").intValue()
+                                        document.getLong("puntos").intValue(),
+                                        false
                                 );
                                 desperfectos.add(desperfecto);
                             }
                         }
 
-                        Toast.makeText(getApplicationContext(), "Existen " + desperfectos.size() + " desperfectos para el usuario.", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplicationContext(), "Existen " + desperfectos.size() + " desperfectos para el usuario.", Toast.LENGTH_SHORT).show();
 
                         cargarVotos();
                     }
@@ -264,7 +268,16 @@ public class LoginActivity extends AppCompatActivity {
                 contador++;
             }
         }
-        if(contador >= 2){
+        // 10 votos significa una cuenta redicida a 0
+        int puntaje = 0;
+        if(Estaticos.tipo_usuario == true) {
+            puntaje = Estaticos.cuenta_usuario.getPuntaje();
+        } else {
+            puntaje = Estaticos.cuenta_administrador.getPuntaje();
+        }
+
+        Toast.makeText(getApplicationContext(), "El contador es " + contador + " y el puntaje " + puntaje, Toast.LENGTH_SHORT).show();
+        if(puntaje <= (contador * 50)){ // Cambiar 50 por 10
             bloqueado = true;
         }
     }

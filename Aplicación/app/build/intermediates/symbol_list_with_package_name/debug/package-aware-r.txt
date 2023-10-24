@@ -3148,6 +3148,7 @@ id activity_chooser_view_content
 id add
 id adjust_height
 id adjust_width
+id agregarReincidencia
 id alertTitle
 id aligned
 id all
@@ -3193,6 +3194,8 @@ id btnTuto
 id btn_open_new_activity
 id buttonFalso
 id buttonPanel
+id buttonReportar
+id buttonSolucionado
 id cache_measures
 id callMeasure
 id cancel_button
@@ -3247,6 +3250,8 @@ id desc2
 id desc2Edit
 id descGaleriaTutorial
 id descGaleriaTutorialIng
+id descReincidencia
+id descReincidenciaDetalle
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -3326,6 +3331,7 @@ id ignoreRequest
 id image
 id imageView
 id imageView2
+id imageView3
 id immediateStop
 id included
 id indeterminate
@@ -3459,6 +3465,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id reincidencias
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3567,6 +3574,7 @@ id textStart
 id textTop
 id textView
 id textView2
+id textView3
 id textViewInfo
 id text_input_end_icon
 id text_input_error_icon
@@ -3737,8 +3745,10 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_agregar_detalle
+layout activity_agregar_reincidencia
 layout activity_desperfecto
 layout activity_detalle_galeria_tutorial
+layout activity_detalle_reincidencia
 layout activity_detalle_tutorial
 layout activity_ingreso_tutorial
 layout activity_listado_detalles

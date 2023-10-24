@@ -57,6 +57,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
+
+
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         // Agrega esta línea de código en tu método onCreate() después de inicializar el botón
@@ -88,7 +90,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 document.getDouble("longitud"),
                                 document.getLong("riesgo").intValue(),
                                 document.getBoolean("tipo_usuario"),
-                                document.getLong("puntos").intValue()
+                                document.getLong("puntos").intValue(),
+                                document.getBoolean("solucionado")
                         );
                         Estaticos.desperfectos.add(desperfecto);
 

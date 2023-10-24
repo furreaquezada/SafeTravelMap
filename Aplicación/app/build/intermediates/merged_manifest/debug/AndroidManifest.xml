@@ -52,6 +52,12 @@
         android:testOnly="true"
         android:theme="@style/Theme.SafeTravelMap" >
         <activity
+            android:name="com.example.safetravelmap.DetalleReincidenciaActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.safetravelmap.AgregarReincidenciaActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.safetravelmap.DetalleGaleriaTutorialActivity"
             android:exported="false" />
         <activity

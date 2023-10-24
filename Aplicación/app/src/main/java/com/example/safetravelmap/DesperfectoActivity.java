@@ -7,19 +7,27 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.safetravelmap.entities.Desperfecto;
 import com.example.safetravelmap.entities.Estaticos;
+import com.example.safetravelmap.entities.Reincidencia;
 import com.example.safetravelmap.entities.Voto;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -41,10 +49,17 @@ public class DesperfectoActivity extends AppCompatActivity {
     TextView tv_desperfecto;
     TextView textViewInfo;
     Button buttonFalso;
+    Button buttonReportar;
+
+    Button buttonSolucionado;
 
     ArrayList<Voto> votos = new ArrayList<Voto>();
 
-    int puntaje = 50;
+    ArrayList<Reincidencia> reincidencias = new ArrayList<Reincidencia>();
+
+    int puntaje = 10;
+
+    private ListView reincidenciasList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +70,32 @@ public class DesperfectoActivity extends AppCompatActivity {
         tv_desperfecto = (TextView) findViewById(R.id.tv_desperfecto);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
         buttonFalso = (Button) findViewById(R.id.buttonFalso);
+        buttonReportar = (Button) findViewById(R.id.buttonReportar);
+        buttonSolucionado = (Button) findViewById(R.id.buttonSolucionado);
+
 
         buttonFalso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Aquí va el código que quieres ejecutar cuando el botón es presionado
                 votar(desperfecto.getLatitud());
+            }
+        });
+
+        buttonSolucionado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Aquí va el código que quieres ejecutar cuando el botón es presionado
+                solucionar(desperfecto.getLatitud());
+            }
+        });
+
+        buttonReportar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AgregarReincidenciaActivity.class);
+                intent.putExtra("latitud", desperfecto.getLatitud());
+                startActivity(intent);
             }
         });
 
@@ -98,7 +133,25 @@ public class DesperfectoActivity extends AppCompatActivity {
                 }
             });
         }
+
+
+
+        if(desperfecto.isSolucionado()){
+            buttonFalso.setEnabled(false);
+            buttonReportar.setEnabled(false);
+            buttonSolucionado.setEnabled(false);
+        }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarReincidencias();
+    }
+
+
+
+
     public void cargarVotos(){
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
@@ -130,6 +183,11 @@ public class DesperfectoActivity extends AppCompatActivity {
                             }
                         }
                     }
+
+                    if(votos.size() >= 2){
+                        buttonFalso.setEnabled(false); // Esta variale se activa cuando ya se descontaron 20 puntos, osea dos votos
+                    }
+
                     if(votoMio) {
                         textViewInfo.setText(desperfecto.getDesperfecto() + "\n" + (desperfecto.getPuntos() - votos.size() * puntaje) + " Puntos.\nUsted ya votó.");
                         buttonFalso.setEnabled(false);
@@ -144,6 +202,58 @@ public class DesperfectoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "ERROR: " + e.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void cargarReincidencias(){
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        mFirestore.collection("reincidencias")
+                .whereEqualTo("latitud", desperfecto.getLatitud())
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(queryDocumentSnapshots.isEmpty()){
+                            Toast.makeText(getApplicationContext(), "No existen reincidencias en base de datos.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }else {
+                            ArrayList<String> opciones = new ArrayList<String>();
+                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                reincidencias.add(new Reincidencia(
+                                        document.getDouble("latitud"),
+                                        document.getString("imagen"),
+                                        document.getString("desc"),
+                                        document.getLong("cod_usuario").intValue(),
+                                        document.getBoolean("tipo_usuario")
+                                ));
+                                opciones.add(document.getString("desc"));
+                            }
+
+                            Toast.makeText(DesperfectoActivity.this, "Hay " + reincidencias.size() + " reinicidencias.", Toast.LENGTH_SHORT).show();
+
+
+                            reincidenciasList = (ListView) findViewById(R.id.reincidencias);
+
+
+
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, opciones);
+                            reincidenciasList.setAdapter(adapter);
+                            reincidenciasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    Intent intent = new Intent(getApplicationContext(), DetalleReincidenciaActivity.class);
+                                    intent.putExtra("imagen", reincidencias.get(i).getImagen());
+                                    intent.putExtra("desc", reincidencias.get(i).getDesc());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@androidx.annotation.NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "ERROR: " + e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 
@@ -186,4 +296,47 @@ public class DesperfectoActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+    public void solucionar(double latitud) {
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+
+        // Crear la consulta filtrando por latitud
+        Query query = mFirestore.collection("desperfectos").whereEqualTo("latitud", latitud);
+
+        // Obtener documentos que coincidan con la consulta
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        // Aquí, 'document' es uno de los documentos que coincide con tu filtro
+
+                        // Define el mapa de actualización aquí si deseas cambiar algún campo
+                        Map<String, Object> updateMap = new HashMap<>();
+                        // Por ejemplo, si quieres marcar el desperfecto como solucionado
+                        updateMap.put("solucionado", true);
+
+                        document.getReference().update(updateMap)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(getApplicationContext(), "Desperfecto solucionado con éxito.", Toast.LENGTH_SHORT).show();
+                                        // Agrega más acciones aquí si es necesario
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@androidx.annotation.NonNull Exception e) {
+                                        Toast.makeText(getApplicationContext(), "ERROR al solucionar: " + e.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                } else {
+                    Log.d("TAG", "Error obteniendo documentos: ", task.getException());
+                }
+            }
+        });
+    }
+
 }

@@ -9,17 +9,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="319fab11-e3ba-4969-a38e-000a4055361f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/safetravelmap/TutorialesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/safetravelmap/TutorialesActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documentación/Proyecto de título Fabio Urrea memoria v6.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Documentación/Proyecto de título Fabio Urrea memoria v6.docx" afterDir="false" />
-    </list>
+    <list default="true" id="319fab11-e3ba-4969-a38e-000a4055361f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[d602f17523ba]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\corpo\.android\avd\Pixel_3a_API_31.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -68,7 +64,7 @@
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/corpo/OneDrive/Escritorio/GitHubProyecto/SafeTravelMap-SafeTravelMapSprint2/Aplicación&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/corpo/OneDrive/Escritorio/s6&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -92,6 +88,9 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.example.safetravelmap.entities" />
+    </key>
+    <key name="android.template.-1518353659">
+      <recent name="com.example.safetravelmap" />
     </key>
     <key name="android.template.282021280">
       <recent name="com.example.safetravelmap" />
@@ -340,17 +339,6 @@
       <updated>1684776114836</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SafeTravelMap$Cuenta_administradorTest_testConsultar_administrador.ic" NAME="Cuenta_administradorTest.testConsultar_administrador Coverage Results" MODIFIED="1685480025051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

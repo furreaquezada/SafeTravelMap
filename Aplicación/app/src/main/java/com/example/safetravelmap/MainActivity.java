@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                                 document.getString("pass"),
                                 document.getString("nombre_usuario"),
                                 document.getString("correo"),
-                                1
+                                1,
+                                100
                         ));
                     }
                 }
@@ -113,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
                                 document.getString("pass"),
                                 document.getString("nombre_usuario"),
                                 document.getString("correo"),
-                                1
+                                1,
+                                100
                         ));
 
 

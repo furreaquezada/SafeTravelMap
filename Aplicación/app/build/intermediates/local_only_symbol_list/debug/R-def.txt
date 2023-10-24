@@ -9,6 +9,7 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+id agregarReincidencia
 id btnAgregarDetalle
 id btnDetalle
 id btnEdit
@@ -21,6 +22,8 @@ id btnMapa2
 id btnTuto
 id btn_open_new_activity
 id buttonFalso
+id buttonReportar
+id buttonSolucionado
 id cargarImagen
 id categorias
 id correo
@@ -29,8 +32,11 @@ id desc2
 id desc2Edit
 id descGaleriaTutorial
 id descGaleriaTutorialIng
+id descReincidencia
+id descReincidenciaDetalle
 id imageView
 id imageView2
+id imageView3
 id listDetalles
 id listOpciones
 id listTutoriales
@@ -39,9 +45,11 @@ id map
 id mensaje
 id menu
 id pass
+id reincidencias
 id switch1
 id textView
 id textView2
+id textView3
 id textViewInfo
 id titulo
 id tituloEdit
@@ -49,8 +57,10 @@ id tituloGaleriaTutorial
 id tituloGaleriaTutorialIng
 id tv_desperfecto
 layout activity_agregar_detalle
+layout activity_agregar_reincidencia
 layout activity_desperfecto
 layout activity_detalle_galeria_tutorial
+layout activity_detalle_reincidencia
 layout activity_detalle_tutorial
 layout activity_ingreso_tutorial
 layout activity_listado_detalles

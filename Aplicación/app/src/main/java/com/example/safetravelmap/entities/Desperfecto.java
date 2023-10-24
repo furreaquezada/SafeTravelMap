@@ -1,5 +1,7 @@
 package com.example.safetravelmap.entities;
 
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 
 public class Desperfecto {
@@ -14,7 +16,12 @@ public class Desperfecto {
 
     public int puntos = 100;
 
-    public Desperfecto(int con_usuario, String desc, String desperfecto, String imagen, double latitud, double longitud, int riesgo, boolean tipo_usuario, int puntos) {
+    public boolean solucionado;
+
+    public ArrayList<Reincidencia> reincidencias = new ArrayList<Reincidencia>();
+
+
+    public Desperfecto(int con_usuario, String desc, String desperfecto, String imagen, double latitud, double longitud, int riesgo, boolean tipo_usuario, int puntos, boolean solucionado) {
         this.con_usuario = con_usuario;
         this.desc = desc;
         this.desperfecto = desperfecto;
@@ -24,6 +31,7 @@ public class Desperfecto {
         this.riesgo = riesgo;
         this.tipo_usuario = tipo_usuario;
         this.puntos = puntos;
+        this.solucionado = solucionado;
     }
 
     public Desperfecto() {
@@ -101,8 +109,20 @@ public class Desperfecto {
         this.puntos = puntos;
     }
 
-    public boolean restarPuntos(int puntos) {
-        return true;
+    public boolean isSolucionado() {
+        return solucionado;
+    }
+
+    public void setSolucionado(boolean solucionado) {
+        this.solucionado = solucionado;
+    }
+
+    public ArrayList<Reincidencia> getReincidencias() {
+        return reincidencias;
+    }
+
+    public void setReincidencias(ArrayList<Reincidencia> reincidencias) {
+        this.reincidencias = reincidencias;
     }
 
     @NonNull

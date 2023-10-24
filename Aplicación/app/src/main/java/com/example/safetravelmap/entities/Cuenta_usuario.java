@@ -15,8 +15,8 @@ public class Cuenta_usuario extends Cuenta{
     public FirebaseFirestore mFirestore;
     public FirebaseAuth mAuth;
 
-    public Cuenta_usuario(int cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo, int id_cuenta_usuario) {
-        super(cod_usuario, nombre, apellido, rut, edad, pass, nombre_usuario, correo);
+    public Cuenta_usuario(int cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo, int id_cuenta_usuario, int puntaje) {
+        super(cod_usuario, nombre, apellido, rut, edad, pass, nombre_usuario, correo, puntaje);
         this.id_cuenta_usuario = id_cuenta_usuario;
     }
 

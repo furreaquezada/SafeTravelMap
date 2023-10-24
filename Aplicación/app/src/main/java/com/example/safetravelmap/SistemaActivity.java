@@ -339,6 +339,7 @@ public class SistemaActivity extends AppCompatActivity {
         desperfecto.put("latitud", latitud);
         desperfecto.put("longitud", longitud);
         desperfecto.put("puntos", 100);
+        desperfecto.put("solucionado", false);
 
 
 
@@ -428,7 +429,8 @@ public class SistemaActivity extends AppCompatActivity {
                                 document.getDouble("longitud"),
                                 document.getLong("riesgo").intValue(),
                                 document.getBoolean("tipo_usuario"),
-                                document.getLong("puntos").intValue()
+                                document.getLong("puntos").intValue(),
+                                false
                         ));
                     }
                 }

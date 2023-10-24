@@ -13,7 +13,9 @@ public class Cuenta {
 
     public String correo;
 
-    public Cuenta(int cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo) {
+    public int puntaje;
+
+    public Cuenta(int cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo, int puntaje) {
         this.cod_usuario = cod_usuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -22,9 +24,11 @@ public class Cuenta {
         this.pass = pass;
         this.nombre_usuario = nombre_usuario;
         this.correo = correo;
+        this.puntaje = puntaje;
     }
 
     public Cuenta() {
+
     }
 
     public int getCod_usuario() {
@@ -89,5 +93,13 @@ public class Cuenta {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
     }
 }
