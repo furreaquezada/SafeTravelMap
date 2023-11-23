@@ -9,15 +9,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="319fab11-e3ba-4969-a38e-000a4055361f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Documentación/Proyecto de título Fabio Urrea memoria v6.docx" beforeDir="false" />
-    </list>
+    <list default="true" id="319fab11-e3ba-4969-a38e-000a4055361f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\corpo\.android\avd\Pixel_3a_API_31.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RF8N63WCHDP]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -66,15 +64,21 @@
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/corpo/OneDrive/Escritorio/GitHubProyecto/SafeTravelMap-SafeTravelMapSprint2/Aplicación&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/SafeTravelMap/app&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="android.template.629335393">
       <recent name="com.example.safetravelmap" />
     </key>
+    <key name="android.template.176691233">
+      <recent name="com.example.safetravelmap" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\proyectos\SafeTravelMap\app" />
+    </key>
+    <key name="android.template.-936544849">
+      <recent name="com.example.safetravelmap" />
     </key>
     <key name="android.template.-1251931648">
       <recent name="com.example.safetravelmap" />
@@ -252,7 +256,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MapasTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ReincidenciaTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -265,7 +269,7 @@
           <list>
             <option value=":app:testDebugUnitTest" />
             <option value="--tests" />
-            <option value="&quot;com.example.safetravelmap.entities.MapasTest&quot;" />
+            <option value="&quot;com.example.safetravelmap.entities.ReincidenciaTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -323,11 +327,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ReincidenciaTest" />
         <item itemvalue="Gradle.TutorialTest" />
         <item itemvalue="Gradle.DesperfectoTest" />
         <item itemvalue="Gradle.MapaTest.testCargarMarcadores" />
         <item itemvalue="Gradle.SpinnerTest" />
-        <item itemvalue="Gradle.MapasTest" />
       </list>
     </recent_temporary>
   </component>
@@ -341,17 +345,6 @@
       <updated>1684776114836</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SafeTravelMap$Cuenta_administradorTest_testConsultar_administrador.ic" NAME="Cuenta_administradorTest.testConsultar_administrador Coverage Results" MODIFIED="1685480025051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

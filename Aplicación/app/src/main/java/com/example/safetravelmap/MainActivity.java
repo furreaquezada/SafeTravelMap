@@ -35,24 +35,26 @@ public class MainActivity extends AppCompatActivity {
 
         mFirestore = FirebaseFirestore.getInstance();
         this.cargarUsuarios();
-
-
-
-
+        this.cargarMenu();
 
     }
 
     public void irALogin(int rol){
-        String strRol;
+        String strRol = "";
         if(rol == 0){
             strRol = "Usuario";
-        }else{
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.putExtra("rol", strRol);
+            startActivity(intent);
+        } else if(rol == 1){
             strRol = "Administrador";
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.putExtra("rol", strRol);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(getApplicationContext(), RegistroActivity.class);
+            startActivity(intent);
         }
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.putExtra("rol", strRol);
-        startActivity(intent);
-
     }
 
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     boolean firstMarker = true;
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Estaticos.cuenta_usuarios.add(new Cuenta_usuario(
-                                document.getLong("cod_usuario").intValue(),
+                                document.getString("cod_usuario"),
                                 document.getString("nombre"),
                                 document.getString("apellido"),
                                 document.getString("rut"),
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     boolean firstMarker = true;
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Estaticos.cuenta_administradores.add(new Cuenta_administrador(
-                                document.getLong("cod_usuario").intValue(),
+                                document.getString("cod_usuario"),
                                 document.getString("nombre"),
                                 document.getString("apellido"),
                                 document.getString("rut"),
@@ -117,12 +119,8 @@ public class MainActivity extends AppCompatActivity {
                                 1,
                                 100
                         ));
-
-
                     }
                 }
-
-                cargarMenu();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -143,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         opciones = new ArrayList<String>();
         opciones.add("Usuario");
         opciones.add("Administrador");
+        opciones.add("Registro");
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, opciones);

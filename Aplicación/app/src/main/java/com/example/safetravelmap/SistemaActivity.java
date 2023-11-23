@@ -63,6 +63,8 @@ public class SistemaActivity extends AppCompatActivity {
     public Button btnMapa2;
 
     public Button btnTuto;
+
+    public Button btnComprobante;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_PERMISSIONS = 1;
     String currentPhotoPath, imageFileName;
@@ -90,6 +92,9 @@ public class SistemaActivity extends AppCompatActivity {
 
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +108,8 @@ public class SistemaActivity extends AppCompatActivity {
         btnMapa = (Button) findViewById(R.id.btnMapa);
         btnMapa2 = (Button) findViewById(R.id.btnMapa2);
         btnTuto = (Button) findViewById(R.id.btnTuto);
+        btnComprobante = (Button) findViewById(R.id.btnComprobante);
+
         textView = (TextView) findViewById(R.id.textView);
         desc = (EditText) findViewById(R.id.desc);
         switch1 = findViewById(R.id.switch1);
@@ -126,6 +133,14 @@ public class SistemaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 intent.putExtra("graves", false);
+                startActivity(intent);
+            }
+        });
+
+        btnComprobante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SubirComprobanteDePagoActivity.class);
                 startActivity(intent);
             }
         });
@@ -340,6 +355,7 @@ public class SistemaActivity extends AppCompatActivity {
         desperfecto.put("longitud", longitud);
         desperfecto.put("puntos", 100);
         desperfecto.put("solucionado", false);
+        desperfecto.put("tres_reincidencias", false);
 
 
 
@@ -412,7 +428,10 @@ public class SistemaActivity extends AppCompatActivity {
     public void cargarDesperfectos(){
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
-        mFirestore.collection("desperfectos").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        mFirestore.collection("desperfectos")
+                .whereEqualTo("solucionado", false)
+                .whereEqualTo("tres_reincidencias", false)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(queryDocumentSnapshots.isEmpty()){
@@ -421,7 +440,7 @@ public class SistemaActivity extends AppCompatActivity {
                 }else {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         desperfectos.add(new Desperfecto(
-                                document.getLong("cod_usuario").intValue(),
+                                document.getString("cod_usuario"),
                                 document.getString("desc"),
                                 document.getString("desperfecto"),
                                 document.getString("imagen"),
@@ -430,6 +449,7 @@ public class SistemaActivity extends AppCompatActivity {
                                 document.getLong("riesgo").intValue(),
                                 document.getBoolean("tipo_usuario"),
                                 document.getLong("puntos").intValue(),
+                                false,
                                 false
                         ));
                     }
@@ -494,8 +514,4 @@ public class SistemaActivity extends AppCompatActivity {
             Toast.makeText(this, "No se pudo obtener la ubicación", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 
 public class Desperfecto {
-    public int con_usuario;
+    public String con_usuario;
     public String desc;
     public String desperfecto;
     public String imagen;
@@ -18,10 +18,12 @@ public class Desperfecto {
 
     public boolean solucionado;
 
+    public boolean tres_reincidencias;
+
     public ArrayList<Reincidencia> reincidencias = new ArrayList<Reincidencia>();
 
 
-    public Desperfecto(int con_usuario, String desc, String desperfecto, String imagen, double latitud, double longitud, int riesgo, boolean tipo_usuario, int puntos, boolean solucionado) {
+    public Desperfecto(String con_usuario, String desc, String desperfecto, String imagen, double latitud, double longitud, int riesgo, boolean tipo_usuario, int puntos, boolean solucionado, boolean tres_reincidencias) {
         this.con_usuario = con_usuario;
         this.desc = desc;
         this.desperfecto = desperfecto;
@@ -32,16 +34,17 @@ public class Desperfecto {
         this.tipo_usuario = tipo_usuario;
         this.puntos = puntos;
         this.solucionado = solucionado;
+        this.tres_reincidencias = tres_reincidencias;
     }
 
     public Desperfecto() {
     }
 
-    public int getCon_usuario() {
+    public String getCon_usuario() {
         return con_usuario;
     }
 
-    public void setCon_usuario(int con_usuario) {
+    public void setCon_usuario(String con_usuario) {
         this.con_usuario = con_usuario;
     }
 
@@ -117,6 +120,14 @@ public class Desperfecto {
         this.solucionado = solucionado;
     }
 
+    public boolean isTres_reincidencias() {
+        return tres_reincidencias;
+    }
+
+    public void setTres_reincidencias(boolean tres_reincidencias) {
+        this.tres_reincidencias = tres_reincidencias;
+    }
+
     public ArrayList<Reincidencia> getReincidencias() {
         return reincidencias;
     }
@@ -125,9 +136,15 @@ public class Desperfecto {
         this.reincidencias = reincidencias;
     }
 
+
+
     @NonNull
     @Override
     public String toString() {
         return "El desperfecto es: " + this.desc + ", (" + this.latitud + ", " + this.longitud + ")";
+    }
+
+    public boolean restarPuntos(int i) {
+        return true;
     }
 }

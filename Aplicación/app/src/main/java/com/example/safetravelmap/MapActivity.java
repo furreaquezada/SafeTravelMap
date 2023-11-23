@@ -70,7 +70,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
 
         mFirestore = FirebaseFirestore.getInstance();
-        mFirestore.collection("desperfectos").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        mFirestore.collection("desperfectos")
+                .whereEqualTo("solucionado", false)
+                .whereEqualTo("tres_reincidencias", false)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(queryDocumentSnapshots.isEmpty()){
@@ -82,7 +86,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         if((graves == true && document.getLong("riesgo").intValue() == 1) || (graves == false && document.getLong("riesgo").intValue() == 0)){
                         Desperfecto desperfecto = new Desperfecto(
-                                document.getLong("cod_usuario").intValue(),
+                                document.getString("cod_usuario"),
                                 document.getString("desc"),
                                 document.getString("desperfecto"),
                                 document.getString("imagen"),
@@ -91,7 +95,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 document.getLong("riesgo").intValue(),
                                 document.getBoolean("tipo_usuario"),
                                 document.getLong("puntos").intValue(),
-                                document.getBoolean("solucionado")
+                                document.getBoolean("solucionado"),
+                                document.getBoolean("tres_reincidencias")
                         );
                         Estaticos.desperfectos.add(desperfecto);
 
@@ -103,7 +108,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         if (desperfecto.isTipo_usuario() == true) {
                             for (int i = 0; i < Estaticos.cuenta_usuarios.size(); i++) {
                                 Cuenta_usuario cuenta_usuario = Estaticos.cuenta_usuarios.get(i);
-                                if (cuenta_usuario.getCod_usuario() == desperfecto.getCon_usuario()) {
+                                if (cuenta_usuario.getCod_usuario().equals(desperfecto.getCon_usuario())) {
                                     usuario = cuenta_usuario.getNombre() + " " + cuenta_usuario.getApellido();
                                 }
                             }
@@ -111,7 +116,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         if (desperfecto.isTipo_usuario() == false) {
                             for (int i = 0; i < Estaticos.cuenta_administradores.size(); i++) {
                                 Cuenta_administrador cuenta_administrador = Estaticos.cuenta_administradores.get(i);
-                                if (cuenta_administrador.getCod_usuario() == desperfecto.getCon_usuario()) {
+                                if (cuenta_administrador.getCod_usuario().equals(desperfecto.getCon_usuario())) {
                                     usuario = cuenta_administrador.getNombre() + " " + cuenta_administrador.getApellido();
                                 }
                             }
@@ -139,7 +144,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             if(desperfecto.isTipo_usuario() == true){
                                 for(int i = 0; i< Estaticos.cuenta_usuarios.size(); i++){
                                     Cuenta_usuario cuenta_usuario = Estaticos.cuenta_usuarios.get(i);
-                                    if(cuenta_usuario.getCod_usuario() == desperfecto.getCon_usuario()){
+                                    if(cuenta_usuario.getCod_usuario().equals(desperfecto.getCon_usuario())){
                                         usuario = cuenta_usuario.getNombre() + " " + cuenta_usuario.getApellido();
                                     }
                                 }
@@ -147,7 +152,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             if(desperfecto.isTipo_usuario() == false){
                                 for(int i = 0; i< Estaticos.cuenta_administradores.size(); i++){
                                     Cuenta_administrador cuenta_administrador = Estaticos.cuenta_administradores.get(i);
-                                    if(cuenta_administrador.getCod_usuario() == desperfecto.getCon_usuario()){
+                                    if(cuenta_administrador.getCod_usuario().equals(desperfecto.getCon_usuario())){
                                         usuario = cuenta_administrador.getNombre() + " " + cuenta_administrador.getApellido();
                                     }
                                 }

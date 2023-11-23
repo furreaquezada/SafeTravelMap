@@ -51,6 +51,8 @@ public class DesperfectoActivity extends AppCompatActivity {
     Button buttonFalso;
     Button buttonReportar;
 
+    Button btnDelete;
+
     Button buttonSolucionado;
 
     ArrayList<Voto> votos = new ArrayList<Voto>();
@@ -60,6 +62,9 @@ public class DesperfectoActivity extends AppCompatActivity {
     int puntaje = 10;
 
     private ListView reincidenciasList;
+
+    int total_solucionados = 1;
+    int total_tres_reincidencias = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,15 @@ public class DesperfectoActivity extends AppCompatActivity {
         buttonFalso = (Button) findViewById(R.id.buttonFalso);
         buttonReportar = (Button) findViewById(R.id.buttonReportar);
         buttonSolucionado = (Button) findViewById(R.id.buttonSolucionado);
+        btnDelete = (Button) findViewById(R.id.btnDelete);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Aquí va el código que quieres ejecutar cuando el botón es presionado
+                eliminarDesperfectoConImagen(desperfecto.getLatitud());
+            }
+        });
 
 
         buttonFalso.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +100,7 @@ public class DesperfectoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Aquí va el código que quieres ejecutar cuando el botón es presionado
-                solucionar(desperfecto.getLatitud());
+                solucionar(String.valueOf(desperfecto.getLatitud()));
             }
         });
 
@@ -100,16 +114,15 @@ public class DesperfectoActivity extends AppCompatActivity {
         });
 
 
-
-
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             int index = intent.getIntExtra("index", -1);
-            if(index != -1){
+            if (index != -1) {
                 desperfecto = Estaticos.desperfectos.get(index);
+                this.actualizarDesperfectosPorLatitud(String.valueOf(desperfecto.getLatitud()));
             }
         }
-        if(desperfecto.getImagen() != null){
+        if (desperfecto.getImagen() != null) {
             tv_desperfecto.setText(desperfecto.getDesc());
             textViewInfo.setText(desperfecto.getDesperfecto() + "\n" + desperfecto.getPuntos() + " Puntos");
 
@@ -135,8 +148,7 @@ public class DesperfectoActivity extends AppCompatActivity {
         }
 
 
-
-        if(desperfecto.isSolucionado()){
+        if (desperfecto.isSolucionado()) {
             buttonFalso.setEnabled(false);
             buttonReportar.setEnabled(false);
             buttonSolucionado.setEnabled(false);
@@ -149,62 +161,114 @@ public class DesperfectoActivity extends AppCompatActivity {
         cargarReincidencias();
     }
 
+    public void eliminarDesperfectoConImagen(double latitud) {
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+        FirebaseStorage mFirebaseStorage = FirebaseStorage.getInstance();
+
+        // Crear la consulta filtrando por latitud
+        Query query = mFirestore.collection("desperfectos").whereEqualTo("latitud", latitud);
+
+        // Obtener documentos que coincidan con la consulta
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        // Obtener el nombre de la imagen del documento
+                        String imageName = document.getString("imagen");
+
+                        // Eliminar el documento de Firestore
+                        document.getReference().delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        // Después de eliminar el documento, eliminar la imagen de Firebase Storage
+                                        StorageReference imageRef = mFirebaseStorage.getReference().child(imageName);
+                                        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(getApplicationContext(), "Imagen eliminada con éxito.", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(getApplicationContext(), SistemaActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(getApplicationContext(), "Error al eliminar la imagen: " + e.toString(), Toast.LENGTH_SHORT).show();
 
 
+                                            }
+                                        });
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getApplicationContext(), "Error al eliminar el desperfecto: " + e.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                } else {
+                    Log.d("TAG", "Error obteniendo documentos: ", task.getException());
+                }
+            }
+        });
+    }
 
-    public void cargarVotos(){
+
+    public void cargarVotos() {
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         mFirestore.collection("votos")
                 .whereEqualTo("latitud", desperfecto.getLatitud())
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if(queryDocumentSnapshots.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "No existen votos en base de datos.", Toast.LENGTH_SHORT).show();
-                    return;
-                }else {
-                    boolean votoMio = false;
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots.isEmpty()) {
+                            Toast.makeText(getApplicationContext(), "No existen votos en base de datos.", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            boolean votoMio = false;
+                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
 
-                        votos.add(new Voto(
-                                document.getLong("cod_usuario").intValue(),
-                                document.getDouble("latitud"),
-                                document.getBoolean("tipo_usuario")
-                        ));
+                                votos.add(new Voto(
+                                        document.getLong("cod_usuario").intValue(),
+                                        document.getDouble("latitud"),
+                                        document.getBoolean("tipo_usuario")
+                                ));
 
-                        if(Estaticos.tipo_usuario){
-                            if(Estaticos.cuenta_usuario.getCod_usuario() == votos.get(votos.size() - 1).getCod_usuario() && votos.get(votos.size() - 1).isTipo_usuario() == true){
-                                votoMio = true;
+                                if (Estaticos.tipo_usuario) {
+                                    if (Estaticos.cuenta_usuario.getCod_usuario().equals(votos.get(votos.size() - 1).getCod_usuario()) && votos.get(votos.size() - 1).isTipo_usuario() == true) {
+                                        votoMio = true;
+                                    }
+                                } else {
+                                    if (Estaticos.cuenta_administrador.getCod_usuario().equals(votos.get(votos.size() - 1).getCod_usuario()) && votos.get(votos.size() - 1).isTipo_usuario() == false) {
+                                        votoMio = true;
+                                    }
+                                }
                             }
-                        }else{
-                            if(Estaticos.cuenta_administrador.getCod_usuario() == votos.get(votos.size() - 1).getCod_usuario() && votos.get(votos.size() - 1).isTipo_usuario() == false){
-                                votoMio = true;
+
+                            if (votos.size() >= 2) {
+                                buttonFalso.setEnabled(false); // Esta variale se activa cuando ya se descontaron 20 puntos, osea dos votos
+                            }
+
+                            if (votoMio) {
+                                textViewInfo.setText(desperfecto.getDesperfecto() + "\n" + (desperfecto.getPuntos() - votos.size() * puntaje) + " Puntos.\nUsted ya votó.");
+                                buttonFalso.setEnabled(false);
+                            } else {
+                                textViewInfo.setText(desperfecto.getDesperfecto() + "\n" + (desperfecto.getPuntos() - votos.size() * puntaje) + " Puntos.");
                             }
                         }
                     }
-
-                    if(votos.size() >= 2){
-                        buttonFalso.setEnabled(false); // Esta variale se activa cuando ya se descontaron 20 puntos, osea dos votos
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@androidx.annotation.NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "ERROR: " + e.toString(), Toast.LENGTH_SHORT).show();
                     }
-
-                    if(votoMio) {
-                        textViewInfo.setText(desperfecto.getDesperfecto() + "\n" + (desperfecto.getPuntos() - votos.size() * puntaje) + " Puntos.\nUsted ya votó.");
-                        buttonFalso.setEnabled(false);
-                    }else{
-                        textViewInfo.setText(desperfecto.getDesperfecto() + "\n" + (desperfecto.getPuntos() - votos.size() * puntaje) + " Puntos.");
-                    }
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@androidx.annotation.NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "ERROR: " + e.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                });
     }
 
-    public void cargarReincidencias(){
+    public void cargarReincidencias() {
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         mFirestore.collection("reincidencias")
@@ -212,27 +276,32 @@ public class DesperfectoActivity extends AppCompatActivity {
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if(queryDocumentSnapshots.isEmpty()){
+                        if (queryDocumentSnapshots.isEmpty()) {
                             Toast.makeText(getApplicationContext(), "No existen reincidencias en base de datos.", Toast.LENGTH_SHORT).show();
                             return;
-                        }else {
+                        } else {
                             ArrayList<String> opciones = new ArrayList<String>();
                             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                 reincidencias.add(new Reincidencia(
                                         document.getDouble("latitud"),
                                         document.getString("imagen"),
                                         document.getString("desc"),
-                                        document.getLong("cod_usuario").intValue(),
+                                        document.getString("cod_usuario"),
                                         document.getBoolean("tipo_usuario")
                                 ));
                                 opciones.add(document.getString("desc"));
+                            }
+
+                            if(opciones.size() == total_tres_reincidencias){
+                                FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+                                mFirestore = FirebaseFirestore.getInstance();
+                                actualizarDesperfectosTres_reincidencias(mFirestore, desperfecto.getLatitud());
                             }
 
                             Toast.makeText(DesperfectoActivity.this, "Hay " + reincidencias.size() + " reinicidencias.", Toast.LENGTH_SHORT).show();
 
 
                             reincidenciasList = (ListView) findViewById(R.id.reincidencias);
-
 
 
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, opciones);
@@ -243,6 +312,8 @@ public class DesperfectoActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), DetalleReincidenciaActivity.class);
                                     intent.putExtra("imagen", reincidencias.get(i).getImagen());
                                     intent.putExtra("desc", reincidencias.get(i).getDesc());
+                                    intent.putExtra("tipo_usuario", reincidencias.get(i).isTipo_usuario());
+                                    intent.putExtra("cod_usuario", reincidencias.get(i).getCod_usuario());
                                     startActivity(intent);
                                 }
                             });
@@ -257,7 +328,7 @@ public class DesperfectoActivity extends AppCompatActivity {
     }
 
 
-    public void votar(double latitud){
+    public void votar(double latitud) {
         buttonFalso.setEnabled(false);
         Toast.makeText(getApplicationContext(), "Votando como NO encontrado.", Toast.LENGTH_SHORT).show();
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
@@ -265,7 +336,7 @@ public class DesperfectoActivity extends AppCompatActivity {
         // Crear un nuevo objeto con los atributos que quieres almacenar
         Map<String, Object> voto = new HashMap<>();
 
-        if(Estaticos.tipo_usuario == true) {
+        if (Estaticos.tipo_usuario == true) {
             voto.put("cod_usuario", Estaticos.cuenta_usuario.getCod_usuario()); // Aquí pon el número que corresponda
         } else {
             voto.put("cod_usuario", Estaticos.cuenta_administrador.getCod_usuario()); // Aquí pon el número que corresponda
@@ -273,8 +344,6 @@ public class DesperfectoActivity extends AppCompatActivity {
 
         voto.put("latitud", latitud);
         voto.put("tipo_usuario", Estaticos.tipo_usuario);
-
-
 
 
         mFirestore.collection("votos")
@@ -297,46 +366,137 @@ public class DesperfectoActivity extends AppCompatActivity {
                 });
     }
 
-
-    public void solucionar(double latitud) {
+    public void solucionar(String latitud) {
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
-        // Crear la consulta filtrando por latitud
-        Query query = mFirestore.collection("desperfectos").whereEqualTo("latitud", latitud);
+        String cod_usuario;
+        if(Estaticos.tipo_usuario) {
+            cod_usuario = Estaticos.cuenta_usuario.getCod_usuario();
+        } else {
+            cod_usuario = Estaticos.cuenta_administrador.getCod_usuario();
+        }
 
-        // Obtener documentos que coincidan con la consulta
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (DocumentSnapshot document : task.getResult()) {
-                        // Aquí, 'document' es uno de los documentos que coincide con tu filtro
-
-                        // Define el mapa de actualización aquí si deseas cambiar algún campo
-                        Map<String, Object> updateMap = new HashMap<>();
-                        // Por ejemplo, si quieres marcar el desperfecto como solucionado
-                        updateMap.put("solucionado", true);
-
-                        document.getReference().update(updateMap)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(getApplicationContext(), "Desperfecto solucionado con éxito.", Toast.LENGTH_SHORT).show();
-                                        // Agrega más acciones aquí si es necesario
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@androidx.annotation.NonNull Exception e) {
-                                        Toast.makeText(getApplicationContext(), "ERROR al solucionar: " + e.toString(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+        // Consultar primero si ya existe un documento con los mismos datos
+        mFirestore.collection("solucionados")
+                .whereEqualTo("cod_usuario", cod_usuario)
+                .whereEqualTo("latitud", latitud)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot querySnapshot = task.getResult();
+                            if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                                // Ya existe un documento con los mismos datos
+                                Toast.makeText(getApplicationContext(), "Usted ya marcó como solucionado este desperfecto.", Toast.LENGTH_SHORT).show();
+                                actualizarDesperfectosPorLatitud(latitud);
+                            } else {
+                                // No existe un documento, agregar uno nuevo
+                                agregarNuevoDocumento(mFirestore, cod_usuario, latitud);
+                            }
+                        } else {
+                            Log.w("Firestore", "Error al consultar documentos", task.getException());
+                        }
                     }
-                } else {
-                    Log.d("TAG", "Error obteniendo documentos: ", task.getException());
-                }
-            }
-        });
+                });
     }
+
+    private void agregarNuevoDocumento(FirebaseFirestore mFirestore, String cod_usuario, String latitud) {
+        Map<String, Object> nuevoDocumento = new HashMap<>();
+        nuevoDocumento.put("cod_usuario", cod_usuario);
+        nuevoDocumento.put("latitud", latitud);
+
+        mFirestore.collection("solucionados")
+                .add(nuevoDocumento)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Firestore", "Solución agregada con ID: " + documentReference.getId());
+                        Toast.makeText(getApplicationContext(), "Solución agregada con ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
+                        actualizarDesperfectosPorLatitud(latitud);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Firestore", "Error al agregar documento", e);
+                    }
+                });
+    }
+
+
+    public void actualizarDesperfectosPorLatitud(String latitud) {
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+
+        // Contar documentos en 'soluciones' que tienen la misma latitud
+        mFirestore.collection("solucionados")
+                .whereEqualTo("latitud", latitud)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        int contador = 0;
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null) {
+                            contador = querySnapshot.size();
+                        }
+                        Toast.makeText(getApplicationContext(), "Hay " + contador + " soluciones marcadas.", Toast.LENGTH_SHORT).show();
+
+                        // Si hay 3 o más soluciones, actualizar los documentos en 'desperfectos'
+                        if (contador >= total_solucionados) {
+                            actualizarDesperfectos(mFirestore, latitud);
+                        }
+                    } else {
+                        Log.w("Firestore", "Error al consultar documentos", task.getException());
+                    }
+                });
+    }
+
+    private void actualizarDesperfectos(FirebaseFirestore mFirestore, String latitud) {
+        // Actualizar todos los documentos en 'desperfectos' con la misma latitud
+        mFirestore.collection("desperfectos")
+                .whereEqualTo("latitud", Double.parseDouble(latitud))
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null) {
+                            for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                                mFirestore.collection("desperfectos").document(document.getId())
+                                        .update("solucionado", true)
+                                        .addOnSuccessListener(aVoid -> Toast.makeText(getApplicationContext(), "Desperfecto actualizado correctamente.", Toast.LENGTH_SHORT).show())
+                                        .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Error al actualizar desperfecto", Toast.LENGTH_SHORT).show());
+                            }
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error al obtener documentos de 'desperfectos'" + task.getException(), Toast.LENGTH_SHORT).show();
+                        Log.w("Firestore", "Error al obtener documentos de 'desperfectos'", task.getException());
+                    }
+                });
+    }
+
+    private void actualizarDesperfectosTres_reincidencias(FirebaseFirestore mFirestore, Double latitud) {
+        // Actualizar todos los documentos en 'desperfectos' con la misma latitud
+        mFirestore.collection("desperfectos")
+                .whereEqualTo("latitud", latitud)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null) {
+                            for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                                mFirestore.collection("desperfectos").document(document.getId())
+                                        .update("tres_reincidencias", true)
+                                        .addOnSuccessListener(aVoid -> Toast.makeText(getApplicationContext(), "Desperfecto actualizado correctamente.", Toast.LENGTH_SHORT).show())
+                                        .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Error al actualizar desperfecto", Toast.LENGTH_SHORT).show());
+                            }
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error al obtener documentos de 'desperfectos'" + task.getException(), Toast.LENGTH_SHORT).show();
+                        Log.w("Firestore", "Error al obtener documentos de 'desperfectos'", task.getException());
+                    }
+                });
+    }
+
+
 
 }

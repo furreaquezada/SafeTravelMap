@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         Toast.makeText(getApplicationContext(), "Bienvenido: " + document.getString("nombre") + " " + document.getString("apellido"), Toast.LENGTH_SHORT).show();
                         Estaticos.cuenta_usuario.setApellido(document.getString("apellido"));
-                        Estaticos.cuenta_usuario.setCod_usuario(document.getLong("cod_usuario").intValue());
+                        Estaticos.cuenta_usuario.setCod_usuario(document.getString("cod_usuario"));
                         Estaticos.cuenta_usuario.setCorreo(document.getString("correo"));
                         Estaticos.cuenta_usuario.setEdad(document.getLong("edad").intValue());
                         Estaticos.cuenta_usuario.setNombre(document.getString("nombre"));
@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         Toast.makeText(getApplicationContext(), "Bienvenido: " + document.getString("nombre") + " " + document.getString("apellido"), Toast.LENGTH_SHORT).show();
                         Estaticos.cuenta_administrador.setApellido(document.getString("apellido"));
-                        Estaticos.cuenta_administrador.setCod_usuario(document.getLong("cod_usuario").intValue());
+                        Estaticos.cuenta_administrador.setCod_usuario(document.getString("cod_usuario"));
                         Estaticos.cuenta_administrador.setCorreo(document.getString("correo"));
                         Estaticos.cuenta_administrador.setEdad(document.getLong("edad").intValue());
                         Estaticos.cuenta_administrador.setNombre(document.getString("nombre"));
@@ -173,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void cargarDesperfectos(){
-        int cod_usuario = 0;
+        String cod_usuario = "";
         if(Estaticos.tipo_usuario){
             cod_usuario = Estaticos.cuenta_usuario.getCod_usuario();
         }else{
@@ -192,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                         }else {
                             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                 Desperfecto desperfecto = new Desperfecto(
-                                        document.getLong("cod_usuario").intValue(),
+                                        document.getString("cod_usuario"),
                                         document.getString("desc"),
                                         document.getString("desperfecto"),
                                         document.getString("imagen"),
@@ -201,6 +201,7 @@ public class LoginActivity extends AppCompatActivity {
                                         document.getLong("riesgo").intValue(),
                                         document.getBoolean("tipo_usuario"),
                                         document.getLong("puntos").intValue(),
+                                        false,
                                         false
                                 );
                                 desperfectos.add(desperfecto);

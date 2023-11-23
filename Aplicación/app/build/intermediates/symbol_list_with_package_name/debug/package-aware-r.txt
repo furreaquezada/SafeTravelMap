@@ -2078,6 +2078,7 @@ color primary_text_disabled_material_light
 color purple_200
 color purple_500
 color purple_700
+color red
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -3158,6 +3159,7 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
+id apellidoR
 id arc
 id asConfigured
 id async
@@ -3182,6 +3184,9 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id btnAgregarDetalle
+id btnCargarComprobante
+id btnComprobante
+id btnDelete
 id btnDetalle
 id btnEdit
 id btnEliminar
@@ -3190,6 +3195,7 @@ id btnIngreso
 id btnIngresoGaleriaTutorial
 id btnMapa
 id btnMapa2
+id btnR
 id btnTuto
 id btn_open_new_activity
 id buttonFalso
@@ -3230,6 +3236,7 @@ id contiguous
 id continuousVelocity
 id coordinator
 id correo
+id correoR
 id cos
 id counterclockwise
 id cradle
@@ -3278,6 +3285,7 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id edadR
 id edge
 id edit_query
 id elastic
@@ -3432,6 +3440,8 @@ id neverCompleteToEnd
 id neverCompleteToStart
 id noScroll
 id noState
+id nombreR
+id nombreUsuarioR
 id none
 id normal
 id north
@@ -3451,6 +3461,7 @@ id parentPanel
 id parentRelative
 id parent_matrix
 id pass
+id passR
 id password_toggle
 id path
 id pathRelative
@@ -3473,6 +3484,7 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id rutR
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
@@ -3575,6 +3587,7 @@ id textTop
 id textView
 id textView2
 id textView3
+id textView4
 id textViewInfo
 id text_input_end_icon
 id text_input_error_icon
@@ -3756,7 +3769,9 @@ layout activity_login
 layout activity_main
 layout activity_map
 layout activity_nuevo_tutorial
+layout activity_registro
 layout activity_sistema
+layout activity_subir_comprobante_de_pago
 layout activity_tutoriales
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row

@@ -4,15 +4,18 @@ public class Reincidencia {
     public double latitud;
     public String imagen;
     public String desc;
-    public int cod_usuario;
+    public String cod_usuario;
     public boolean tipo_usuario;
 
-    public Reincidencia(double latitud, String imagen, String desc, int cod_usuario, boolean tipo_usuario) {
+    public Reincidencia(double latitud, String imagen, String desc, String cod_usuario, boolean tipo_usuario) {
         this.latitud = latitud;
         this.imagen = imagen;
         this.desc = desc;
         this.cod_usuario = cod_usuario;
         this.tipo_usuario = tipo_usuario;
+    }
+
+    public Reincidencia() {
     }
 
     public double getLatitud() {
@@ -39,11 +42,11 @@ public class Reincidencia {
         this.desc = desc;
     }
 
-    public int getCod_usuario() {
+    public String getCod_usuario() {
         return cod_usuario;
     }
 
-    public void setCod_usuario(int cod_usuario) {
+    public void setCod_usuario(String cod_usuario) {
         this.cod_usuario = cod_usuario;
     }
 
@@ -53,5 +56,9 @@ public class Reincidencia {
 
     public void setTipo_usuario(boolean tipo_usuario) {
         this.tipo_usuario = tipo_usuario;
+    }
+
+    public boolean crearReincidencia() {
+        return true;
     }
 }

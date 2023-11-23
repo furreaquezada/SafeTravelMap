@@ -1,7 +1,7 @@
 package com.example.safetravelmap.entities;
 
 public class Cuenta {
-    public int cod_usuario;
+    public String cod_usuario;
     public String nombre;
     public String apellido;
     public String rut;
@@ -15,7 +15,7 @@ public class Cuenta {
 
     public int puntaje;
 
-    public Cuenta(int cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo, int puntaje) {
+    public Cuenta(String cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo, int puntaje) {
         this.cod_usuario = cod_usuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -31,11 +31,11 @@ public class Cuenta {
 
     }
 
-    public int getCod_usuario() {
+    public String getCod_usuario() {
         return cod_usuario;
     }
 
-    public void setCod_usuario(int cod_usuario) {
+    public void setCod_usuario(String cod_usuario) {
         this.cod_usuario = cod_usuario;
     }
 

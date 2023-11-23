@@ -11,7 +11,7 @@ public class Cuenta_administrador extends Cuenta{
     public FirebaseAuth mAuth;
 
 
-    public Cuenta_administrador(int cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo, int id_cuenta_administrador, int puntaje) {
+    public Cuenta_administrador(String cod_usuario, String nombre, String apellido, String rut, int edad, String pass, String nombre_usuario, String correo, int id_cuenta_administrador, int puntaje) {
         super(cod_usuario, nombre, apellido, rut, edad, pass, nombre_usuario, correo, puntaje);
         this.id_cuenta_administrador = id_cuenta_administrador;
     }

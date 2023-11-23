@@ -19,6 +19,12 @@
         android:theme="@style/Theme.SafeTravelMap"
         tools:targetApi="31">
         <activity
+            android:name=".SubirComprobanteDePagoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistroActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalleReincidenciaActivity"
             android:exported="false" />
         <activity
