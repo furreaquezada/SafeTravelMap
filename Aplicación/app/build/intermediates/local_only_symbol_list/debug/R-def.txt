@@ -10,6 +10,7 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable transferb
 id agregarReincidencia
 id apellidoR
 id btnAgregarDetalle
@@ -45,6 +46,8 @@ id edadR
 id imageView
 id imageView2
 id imageView3
+id imageView4
+id imageView5
 id listDetalles
 id listOpciones
 id listTutoriales
@@ -62,7 +65,6 @@ id switch1
 id textView
 id textView2
 id textView3
-id textView4
 id textViewInfo
 id titulo
 id tituloEdit
@@ -86,6 +88,7 @@ layout activity_sistema
 layout activity_subir_comprobante_de_pago
 layout activity_tutoriales
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_name
 string default_web_client_id

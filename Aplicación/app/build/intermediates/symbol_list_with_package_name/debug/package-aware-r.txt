@@ -3076,6 +3076,7 @@ drawable notify_panel_notification_icon_bg
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable transferb
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3340,6 +3341,8 @@ id image
 id imageView
 id imageView2
 id imageView3
+id imageView4
+id imageView5
 id immediateStop
 id included
 id indeterminate
@@ -3587,7 +3590,6 @@ id textTop
 id textView
 id textView2
 id textView3
-id textView4
 id textViewInfo
 id text_input_end_icon
 id text_input_error_icon
@@ -3853,6 +3855,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw firebase_common_keep

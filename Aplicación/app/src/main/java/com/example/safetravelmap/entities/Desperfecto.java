@@ -147,4 +147,7 @@ public class Desperfecto {
     public boolean restarPuntos(int i) {
         return true;
     }
+    public boolean validarPresenciaEnMap(int solucionado, int limite_reincidencias) {
+        return true;
+    }
 }
