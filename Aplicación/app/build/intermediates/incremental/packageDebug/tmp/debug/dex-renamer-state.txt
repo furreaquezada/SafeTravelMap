@@ -1,4 +1,4 @@
-#Tue Nov 21 21:19:00 CLST 2023
+#Fri Nov 24 19:48:59 CLST 2023
 base.0=C\:\\Users\\corpo\\OneDrive\\Escritorio\\GitHubProyecto\\SafeTravelMap-SafeTravelMapSprint2\\Aplicación\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\corpo\\OneDrive\\Escritorio\\GitHubProyecto\\SafeTravelMap-SafeTravelMapSprint2\\Aplicación\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\corpo\\OneDrive\\Escritorio\\GitHubProyecto\\SafeTravelMap-SafeTravelMapSprint2\\Aplicación\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
