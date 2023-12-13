@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetalleTutorialActivity">
+    tools:context="com.STM.safetravelmap.DetalleTutorialActivity">
 
     <EditText
         android:id="@+id/tituloEdit"

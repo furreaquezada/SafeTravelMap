@@ -12,16 +12,17 @@
         android:layout_height="273dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.829"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <ListView
         android:id="@+id/menu"
         android:layout_width="409dp"
         android:layout_height="305dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

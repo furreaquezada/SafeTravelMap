@@ -19,52 +19,52 @@
         android:theme="@style/Theme.SafeTravelMap"
         tools:targetApi="31">
         <activity
-            android:name=".SubirComprobanteDePagoActivity"
+            android:name="com.STM.safetravelmap.SubirComprobanteDePagoActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistroActivity"
+            android:name="com.STM.safetravelmap.RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".DetalleReincidenciaActivity"
+            android:name="com.STM.safetravelmap.DetalleReincidenciaActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarReincidenciaActivity"
+            android:name="com.STM.safetravelmap.AgregarReincidenciaActivity"
             android:exported="false" />
         <activity
-            android:name=".DetalleGaleriaTutorialActivity"
+            android:name="com.STM.safetravelmap.DetalleGaleriaTutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".ListadoDetallesActivity"
+            android:name="com.STM.safetravelmap.ListadoDetallesActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarDetalleActivity"
+            android:name="com.STM.safetravelmap.AgregarDetalleActivity"
             android:exported="false" />
         <activity
-            android:name=".DetalleTutorialActivity"
+            android:name="com.STM.safetravelmap.DetalleTutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorialesActivity"
+            android:name="com.STM.safetravelmap.TutorialesActivity"
             android:exported="false" />
         <activity
-            android:name=".IngresoTutorialActivity"
+            android:name="com.STM.safetravelmap.IngresoTutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".NuevoTutorialActivity"
+            android:name="com.STM.safetravelmap.NuevoTutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".DesperfectoActivity"
+            android:name="com.STM.safetravelmap.DesperfectoActivity"
             android:exported="false" />
         <activity
-            android:name=".MapActivity"
+            android:name="com.STM.safetravelmap.MapActivity"
             android:exported="false" />
         <activity
-            android:name=".SistemaActivity"
+            android:name="com.STM.safetravelmap.SistemaActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.STM.safetravelmap.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.STM.safetravelmap.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,7 +75,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="com.STM.android.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

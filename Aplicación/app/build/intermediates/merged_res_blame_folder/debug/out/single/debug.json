@@ -1,166 +1,162 @@
 [
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_ingreso_tutorial.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_ingreso_tutorial.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_map.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_map.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_detalle_galeria_tutorial.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_detalle_galeria_tutorial.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_agregar_detalle.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_agregar_detalle.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\drawable_transfer.jpg.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\drawable\\transfer.jpg"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_registro.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_registro.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_detalle_tutorial.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_detalle_tutorial.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xhdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_subir_comprobante_de_pago.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_subir_comprobante_de_pago.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\xml\\file_paths.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_tutoriales.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_tutoriales.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_detalle_reincidencia.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_detalle_reincidencia.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_detalle_tutorial.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_detalle_tutorial.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_nuevo_tutorial.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_nuevo_tutorial.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-mdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-hdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\xml\\backup_rules.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\drawable_transferb.jpg.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\drawable\\transferb.jpg"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_sistema.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_sistema.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_agregar_reincidencia.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_agregar_reincidencia.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_agregar_detalle.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_agregar_detalle.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_desperfecto.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_desperfecto.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_listado_detalles.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_listado_detalles.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_subir_comprobante_de_pago.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_subir_comprobante_de_pago.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_detalle_galeria_tutorial.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_detalle_galeria_tutorial.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_map.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_map.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-mdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-hdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_desperfecto.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_desperfecto.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_login.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_login.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-mdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.safetravelmap.app-merged_res-36:/drawable_transferb.jpg.flat",
-        "source": "com.example.safetravelmap.app-main-38:/drawable/transferb.jpg"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_agregar_reincidencia.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_agregar_reincidencia.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_nuevo_tutorial.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_nuevo_tutorial.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_detalle_reincidencia.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_detalle_reincidencia.xml"
     },
     {
-        "merged": "com.example.safetravelmap.app-merged_res-36:/layout_activity_subir_comprobante_de_pago.xml.flat",
-        "source": "com.example.safetravelmap.app-main-38:/layout/activity_subir_comprobante_de_pago.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_registro.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_registro.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_listado_detalles.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_listado_detalles.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\xml\\data_extraction_rules.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_ingreso_tutorial.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_ingreso_tutorial.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_tutoriales.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_tutoriales.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_sistema.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_sistema.xml"
+        "merged": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\frank\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\xml_file_paths.xml.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\xml\\file_paths.xml"
-    },
-    {
-        "merged": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-merged_res-36:\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\corpo\\.gradle\\daemon\\7.5\\com.example.safetravelmap.app-main-38:\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "com.example.safetravelmap.app-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "com.example.safetravelmap.app-main-38:/layout/activity_main.xml"
     }
 ]
